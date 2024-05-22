@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Index, Column, CreateDateColumn, Update
 
 @Entity('users')
 export class User {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Index({ unique: true })
     @Column('varchar', { unique: true })

@@ -1,5 +1,5 @@
 export class UserM {
-    id: number;
+    id: string;
     email: string;
     name: string;
     password: string;

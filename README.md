@@ -8,6 +8,12 @@
 $ yarn install
 ```
 
+## Migration
+
+```bash
+$ npm run typeorm_src migration:run
+```
+
 ## Running the app
 
 ```bash

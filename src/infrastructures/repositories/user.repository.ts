@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { UserM } from "src/domains/model/user";
 import { UserRepository } from "src/domains/repositories/user.repository";
@@ -17,12 +17,18 @@ export class UserRepositoryOrm implements UserRepository {
         const users = await this.userRepository.find();
         return users.map((user) => this.toUser(user));
     }
+
     async createUser(createUserDto: CreateUserDto): Promise<UserM> {
-        const user = new User();
-        user.email = createUserDto.email;
-        user.name = createUserDto.name;
-        user.password = createUserDto.password;
-        return this.userRepository.save(user);
+        try {
+            const user = new User();
+            user.email = createUserDto.email;
+            user.name = createUserDto.name;
+            user.password = createUserDto.password;
+            const result = await this.userRepository.save(user);
+            return result
+        } catch (error: any) {
+            throw new BadRequestException(error.sqlMessage);
+        }
     }
 
     private toUser(userEntity: User): UserM {
