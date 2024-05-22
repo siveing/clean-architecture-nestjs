@@ -17,12 +17,7 @@ export class UserController {
     @Get('')
     async getAllUsers() {
         const result = await this.getUserUsecaseProxy.getInstance().execute();
-        return {
-            status: 'OK',
-            code: 200,
-            message: 'Get data success',
-            data: result,
-        };
+        return result;
     }
 
     @Post('')
