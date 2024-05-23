@@ -16,7 +16,6 @@ export const getTypeOrmModuleOptions = (
         entities: [__dirname + './../../**/*.entity{.ts,.js}'],
         autoLoadEntities: true,
         synchronize: false,
-        // schema: process.env.DATABASE_SCHEMA,
         migrationsRun: true,
         migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
         cli: {

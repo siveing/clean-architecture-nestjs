@@ -3,9 +3,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpExceptionFilter } from './applications/filter/exception.filter';
 import { ApplicationInterceptor } from './applications/interceptor/application.interceptor';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // COOKIE PARSER
+  app.use(cookieParser());
 
   // PREFIX
   app.setGlobalPrefix('api/v1');

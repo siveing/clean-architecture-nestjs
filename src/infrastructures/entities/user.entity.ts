@@ -9,15 +9,25 @@ export class User {
     @Column('varchar', { unique: true })
     email: string;
 
+    @Index({ unique: true })
+    @Column('varchar', { unique: true })
+    username: string;
+
     @Column('varchar')
     name: string;
 
     @Column('varchar')
     password: string;
 
-    @CreateDateColumn({ name: 'created_at' })
-    created_at: Date;
+    @CreateDateColumn({ name: 'createdAt' })
+    createdAt: Date;
 
-    @UpdateDateColumn({ name: 'updated_at' })
-    updated_at: Date;
+    @UpdateDateColumn({ name: 'updatedAt' })
+    updatedAt: Date;
+
+    @Column({ nullable: true })
+    lastLogin?: Date;
+
+    @Column({ type: 'varchar', nullable: true })
+    refreshToken?: string;
 }

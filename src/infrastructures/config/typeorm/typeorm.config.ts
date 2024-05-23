@@ -22,6 +22,4 @@ config
         console.error('Error during Data Source initialization', err);
     });
 
-console.log(`Config type orm has ::::`, config);
-
 export default config;

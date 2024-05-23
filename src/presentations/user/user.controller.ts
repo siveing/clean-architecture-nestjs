@@ -4,6 +4,7 @@ import { UseCaseProxy } from "src/infrastructures/usecase-proxy/usecase-proxy";
 import { UsecaseProxyModule } from "src/infrastructures/usecase-proxy/usecase-proxy.module";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { CreateUserUseCases } from "src/applications/use-cases/create-user.usecase";
+import { LoginUseCases } from "src/applications/use-cases/auth/login.usecase";
 
 @Controller('users')
 export class UserController {
@@ -23,16 +24,10 @@ export class UserController {
     @Post('')
     async createUser(@Body() createUserDto: CreateUserDto) {
         const { email, name, password } = createUserDto;
-        const result = await this.createUserUsecaseProxy.getInstance().execute({
+        return await this.createUserUsecaseProxy.getInstance().execute({
             email,
             name,
             password,
         });
-        return {
-            status: 'Created',
-            code: 201,
-            message: 'Insert data success',
-            data: result,
-        };
     }
 }

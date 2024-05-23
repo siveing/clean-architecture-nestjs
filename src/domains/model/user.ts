@@ -1,8 +1,14 @@
-export class UserM {
+export class UserWithoutPassword {
     id: string;
+    username: string;
     email: string;
     name: string;
+    createdAt: Date;
+    updatedAt: Date;
+    lastLogin?: Date;
+    hashRefreshToken?: string;
+}
+
+export class UserM extends UserWithoutPassword {
     password: string;
-    created_at: Date;
-    updated_at: Date;
 }
